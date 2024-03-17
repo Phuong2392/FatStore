@@ -1,4 +1,5 @@
-﻿ CREATE TABLE Accounts (
+﻿use FatStore;
+CREATE TABLE Accounts (
     username VARCHAR(50) PRIMARY KEY,
     phone VARCHAR(10),
     password VARCHAR(10),
@@ -49,3 +50,6 @@ INSERT INTO Categories(name) VALUES ('Nam');
 INSERT INTO Categories(name) VALUES ('Nữ');
 INSERT INTO Categories(name) VALUES ('Ba lô');
 
+INSERT INTO Accounts(username,phone,password, email, isactive, isadmin, address ) VALUES ('PhuongNTK', '0767038890', '123', 'nguyen020392@gmail.com',1,1, '1/24 Ho Thi Ky');
+INSERT INTO Accounts(username,phone,password, email, isactive, isadmin, address ) VALUES ('LinhNguyen', '0767038823', '123', 'nguyen02@gmail.com',1,1, '1 Ho Thi Ky');
+INSERT INTO Accounts(username,phone,password, email, isactive, isadmin, address ) VALUES ('PhuongNguyen', '0767034533', '123', 'nguyen0203@gmail.com',1,0, '1/26 Ho Thi Ky');
