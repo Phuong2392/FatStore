@@ -12,15 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
 	@Column(name = "createdate")
 	private Timestamp createdate;
@@ -28,19 +29,21 @@ public class Order {
 	@Column(name = "price")
 	private float price;
 	
-	@ManyToOne
-    @JoinColumn(name = "username")
-    private Order order;
+	@Column(name = "status")
+	private boolean status;
 	
 	@ManyToOne
-    @JoinColumn(name = "productid")
-    private Order orders;
+	@JoinColumn(name = "username")
+	private Account account;
+	
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private OrderDetail orderDetail;
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -60,19 +63,27 @@ public class Order {
 		this.price = price;
 	}
 
-	public Order getOrder() {
-		return order;
+	public boolean isStatus() {
+		return status;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
-	public Order getOrders() {
-		return orders;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setOrders(Order orders) {
-		this.orders = orders;
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public OrderDetail getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(OrderDetail orderDetail) {
+		this.orderDetail = orderDetail;
 	}
 }

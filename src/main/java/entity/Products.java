@@ -41,8 +41,8 @@ public class Products {
     @JoinColumn(name = "cateid")
     private Categories categories;
 	
-	@OneToMany(mappedBy = "orders",cascade = CascadeType.ALL)
-	private List<Order> orders;
+	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
 
 	public Integer getId() {
 		return id;
@@ -91,4 +91,20 @@ public class Products {
 	public void setCreatedate(Timestamp createdate) {
 		this.createdate = createdate;
 	}
+
+	public Categories getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Categories categories) {
+		this.categories = categories;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}	
 }

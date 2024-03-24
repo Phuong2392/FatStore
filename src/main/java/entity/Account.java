@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "account")
-public class Account {
+public class Account{
 	
 	@Id
 	@Column(name = "username")
@@ -35,8 +35,8 @@ public class Account {
 	@Column(name = "address")
 	private String address;
 	
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-	private List<Order> order;
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Order> order;
 
 	public String getUsername() {
 		return username;
@@ -92,5 +92,13 @@ public class Account {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
 	}
 }
