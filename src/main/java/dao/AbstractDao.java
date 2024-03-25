@@ -14,11 +14,11 @@ public class AbstractDao<T> {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void finalize() throws Throwable {
-		entityManager.close();// đóng session
+		entityManager.close(); 
 		super.finalize();
 	}
 
-	public T findById(Class<T> clazz, Integer id) {
+	public T findById(Class<T> clazz, String id) {
 		return entityManager.find(clazz, id);
 	}
 

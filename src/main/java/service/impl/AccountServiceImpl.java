@@ -3,12 +3,15 @@ package service.impl;
 import java.util.List;
 
 import dao.AccountDao;
+import dao.impl.AccountDaoImpl;
 import entity.Account;
 import service.AccountService;
 
 public class AccountServiceImpl implements AccountService{
 	private AccountDao dao;
-	
+	public AccountServiceImpl() {
+		dao = new AccountDaoImpl();
+	}
 
 	@Override
 	public Account findById(String username) {
