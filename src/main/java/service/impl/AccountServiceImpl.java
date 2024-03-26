@@ -60,8 +60,10 @@ public class AccountServiceImpl implements AccountService{
 		newAccount.setUsername(username);
 		newAccount.setPassword(password);
 		newAccount.setEmail(email);
+		newAccount.setPhone(phone);
 		newAccount.setIsactive(Boolean.TRUE);
 		newAccount.setIsadmin(Boolean.FALSE);
+		newAccount.setAddress(address);
 		return dao.create(newAccount);
 	}
 

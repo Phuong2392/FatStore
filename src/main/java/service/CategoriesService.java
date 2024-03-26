@@ -1,9 +1,9 @@
-package dao;
+package service;
 
 import java.util.List;
 
 import entity.Categories;
 
-public interface CategoriesDao {
+public interface CategoriesService {
 	List<Categories> getAllCategories();
 }

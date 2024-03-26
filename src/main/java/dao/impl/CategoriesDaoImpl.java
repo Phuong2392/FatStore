@@ -9,7 +9,7 @@ import entity.Categories;
 public class CategoriesDaoImpl extends AbstractDao<Categories> implements CategoriesDao{
 
 	@Override
-	public List<Categories> findAll() {
-		return super.findAll(Categories.class, true);
+	public List<Categories> getAllCategories() {
+		return super.allList(Categories.class);
 	}
 }

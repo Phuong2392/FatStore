@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import entity.Categories;
 import util.JpaUtil;
 
 public class AbstractDao<T> {
@@ -32,6 +33,13 @@ public class AbstractDao<T> {
 		TypedQuery<T> query = entityManager.createQuery(sql.toString(), clazz);
 		return query.getResultList();
 	}
+		
+	public <T> List<T> allList(Class<T> clazz) {
+        String entityName = clazz.getSimpleName();
+        String queryStr = "SELECT o FROM " + entityName + " o";
+        TypedQuery<T> query = entityManager.createQuery(queryStr, clazz);
+        return query.getResultList();
+    }
 
 	// Phân trang
 	public List<T> findAll(Class<T> clazz, boolean existIsActive, int pageNumber, int pageSize) {
@@ -116,6 +124,6 @@ public class AbstractDao<T> {
 			System.out.println("Cannot delete entity" + entity.getClass().getSimpleName());
 			throw new RuntimeException(e);
 		}
-	}	
+	}
 }
 

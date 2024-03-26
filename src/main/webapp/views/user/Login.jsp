@@ -13,6 +13,8 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="assets/img/favicon.ico">
 <%@ include file="/common/head.jsp"%>
+<link rel="stylesheet"
+	href="<c:url value='/assets/user/css/login.css'/>">
 </head>
 
 <body>
@@ -20,48 +22,62 @@
 	<%@ include file="/common/header.jsp"%>
 
 	<main>
-		<section class="login_part section_padding ">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>New to our Shop?</h2>
-                            <p>There are advances being made in science and technology
-                                everyday, and a good example of this is the</p>
-                            <a href="#" class="btn_3">Create an Account</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Welcome Back ! <br>
-                                Please Sign in now</h3>
-                            <form class="row contact_form" action="login" method="post" novalidate="novalidate">
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="username" value=""
-                                        placeholder="Username">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <button type="submit" value="submit" class="btn_3">
-                                        log in
-                                    </button>
-                                    <a class="lost_pass" href="#">forget password?</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		<div class="container" id="container">
+			<div class="form-container sign-up-container">
+				<form action="register" method="post">
+					<h1>Create Account</h1>
+					<input type="text" placeholder="Username" name="username"/> 					
+					<input type="password" placeholder="Password" name="password"/>
+					<input type="text" placeholder="Phone" name="phone"/>
+					<input type="text" placeholder="Email" name="email"/>
+					<input type="text" placeholder="Address" name="address"/>
+					<button>Sign Up</button>
+				</form>
+			</div>
+			<div class="form-container sign-in-container">
+				<form action="login" method="post">
+					<h1>Sign in</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+							href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<span>or use your account</span> 
+					<input type="username" name="username" placeholder="Username" /> 
+					<input type="password" name="password" placeholder="Password" /> 
+					<a href="#">Forgot your password?</a>
+					<button>Sign In</button>
+				</form>
+			</div>
+			<div class="overlay-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-left">
+						<h1>Welcome Back!</h1>
+						<p>To keep connected with us please login with your personal
+							info</p>
+						<button class="ghost" id="signIn">Sign In</button>
+					</div>
+					<div class="overlay-panel overlay-right">
+						<h1>Hello, Friend!</h1>
+						<p>Enter your personal details and start journey with us</p>
+						<button class="ghost" id="signUp">Sign Up</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</main>
-	<%@ include file="/common/footer.jsp"%>
+	 <script> 
+	 const signUpButton = document.getElementById('signUp');
+     const signInButton = document.getElementById('signIn');
+     const container = document.getElementById('container');
+     
+     signUpButton.addEventListener('click', () => {
+         container.classList.add("right-panel-active");
+     });
+     
+     signInButton.addEventListener('click', () => {
+         container.classList.remove("right-panel-active");
+     });</script>
 </body>
 </html>

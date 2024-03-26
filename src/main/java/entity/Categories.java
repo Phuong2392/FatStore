@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 public class Categories {
 	@Id
 	@Column(name = "id")
@@ -23,6 +23,9 @@ public class Categories {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "image")
+	private String image;
 	
 	@OneToMany(mappedBy = "categories",cascade = CascadeType.ALL)
 	private List<Products> products;
@@ -37,6 +40,22 @@ public class Categories {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
 	}
 
 	public void setName(String name) {

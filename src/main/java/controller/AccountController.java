@@ -27,9 +27,12 @@ public class AccountController extends HttpServlet{
 		case "/login":
 			doGetLogin(req, resp);
 			break;
+//		case "/register":
+//			doGetRegister(req, resp);
+//			break;
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -38,13 +41,33 @@ public class AccountController extends HttpServlet{
 		case "/login":
 			doPostLogin(session, req, resp);
 			break;
+		case "/register":
+			doPostRegister(session, req, resp);
+			break;
+		}
+	}
+
+	private void doPostRegister(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String username = req.getParameter("username");// lấy giá trị username bằng Parameter
+		String password = req.getParameter("password");
+		String email = req.getParameter("email");
+		String phone = req.getParameter("phone");
+		String address = req.getParameter("address");
+		
+		Account account = accountService.register(username, password, email, phone, address);
+		if (account != null) {
+			session.setAttribute(Session.CURRENT_USER, account);
+			resp.sendRedirect("index");
+		} else {
+			resp.sendRedirect("register");
 		}
 	}
 
 	private void doGetLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/views/user/Login.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/views/user/Login.jsp").forward(req, resp);	
 	}
+	
+	
 	private void doPostLogin(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
