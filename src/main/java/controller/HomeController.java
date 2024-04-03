@@ -12,12 +12,16 @@ import javax.servlet.http.HttpSession;
 
 import dao.CategoriesDao;
 import entity.Categories;
+import entity.Products;
 import service.CategoriesService;
+import service.ProductService;
 import service.impl.CategoriesServiceImpl;
+import service.impl.ProductServiceImpl;
 
 @WebServlet(urlPatterns = { "/index", "/myorder"})
 public class HomeController extends HttpServlet{
 	private CategoriesService categoriesService = new CategoriesServiceImpl();
+	private ProductService productService = new ProductServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,12 +37,14 @@ public class HomeController extends HttpServlet{
 	}
 }
 
-	private void doGetMyOrder(HttpSession session, HttpServletRequest req, HttpServletResponse resp) {
-		
+	private void doGetMyOrder(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/views/user/myorder.jsp").forward(req, resp);
 	}
 
 	private void doGetIndex(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Categories> categories = categoriesService.getAllCategories();
+		List<Products> products = productService.findFirstSixProducts();
+		req.setAttribute("products", products);
 		req.setAttribute("categories", categories);
 		req.getRequestDispatcher("/views/user/index.jsp").forward(req, resp);
 	}

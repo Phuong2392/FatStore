@@ -84,6 +84,25 @@
            </div>
        </div>
        <!-- Footer End-->
-
    </footer>
+     <script>
+     $('#btnChangePass').click(function(){
+		 $('#messageReturn').text('');
+		 var oldPass = $('#oldPass').val();
+		    var newPass = $('#newPass').val();
+	var formData = {
+			'oldPass' : oldPass,
+			'newPass' : newPass,
+			};
+	$.ajax({
+		url : 'changePass',
+		type: 'POST',
+		data: formData
+		}).then(function(data){
+			$('#messageReturn').text('Password has been reset. please check your email');
+		}).fail(function(error){
+			$('#messageReturn').text('Your information not correct, please check again');
+		});
+	});
+     </script>
    
