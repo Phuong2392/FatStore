@@ -21,28 +21,31 @@ public class Products {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "price")
 	private float price;
-	
+
 	@Column(name = "quantity")
 	private int quantity;
-	
+
 	@Column(name = "createdate")
 	private Timestamp createdate;
-	
+
+	@Column(name = "image")
+	private String image;
+
 	@ManyToOne
-    @JoinColumn(name = "cateid")
-    private Categories categories;
-	
+	@JoinColumn(name = "cateid")
+	private Categories categories;
+
 	@OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetails;
+	private List<OrderDetail> orderDetails;
 
 	public Integer getId() {
 		return id;
@@ -54,6 +57,14 @@ public class Products {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setName(String name) {
@@ -106,5 +117,5 @@ public class Products {
 
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
-	}	
+	}
 }

@@ -26,11 +26,11 @@
 			<div class="form-container sign-up-container">
 				<form action="register" method="post">
 					<h1>Create Account</h1>
-					<input type="text" placeholder="Username" name="username"/> 					
-					<input type="password" placeholder="Password" name="password"/>
-					<input type="text" placeholder="Phone" name="phone"/>
-					<input type="text" placeholder="Email" name="email"/>
-					<input type="text" placeholder="Address" name="address"/>
+					<input type="text" placeholder="Username" name="username" /> <input
+						type="password" placeholder="Password" name="password" /> <input
+						type="text" placeholder="Phone" name="phone" /> <input
+						type="text" placeholder="Email" name="email" /> <input
+						type="text" placeholder="Address" name="address" />
 					<button>Sign Up</button>
 				</form>
 			</div>
@@ -42,10 +42,11 @@
 							href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 					</div>
-					<span>or use your account</span> 
-					<input type="username" name="username" placeholder="Username" /> 
-					<input type="password" name="password" placeholder="Password" /> 
-					<a href="#">Forgot your password?</a>
+					<span>or use your account</span> <input type="username"
+						name="username" placeholder="Username" /> <input type="password"
+						name="password" placeholder="Password" /> <a href="#"
+						data-toggle="modal" data-target="#forgotPassModal">Forgot your
+						password?</a>
 					<button>Sign In</button>
 				</form>
 			</div>
@@ -65,9 +66,28 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- Forgot Password -->
+		<div class="modal fade" id="forgotPassModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Forgot your
+							password?</h5>
+					</div>
+					<div class="modal-body">
+						<form action="forgotPass" method="post">
+							<span>Enter email information</span> <input type="email"
+								name="email" id="email" placeholder="Email" />
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="sendBtnForgotPass">Send</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 	</main>
-	 <script> 
+	<script> 
 	 const signUpButton = document.getElementById('signUp');
      const signInButton = document.getElementById('signIn');
      const container = document.getElementById('container');
@@ -78,6 +98,26 @@
      
      signInButton.addEventListener('click', () => {
          container.classList.remove("right-panel-active");
-     });</script>
+     });
+     </script>
+	<script>
+     $('#sendBtnForgotPass').click(function(){
+		 $('#messageReturn').text('');
+	var email = $('#email').val();
+	var formData = {'email' : email};
+	$.ajax({
+		url : 'forgotPass',
+		type: 'POST',
+		data: formData
+		}).then(function(data){
+			$('#messageReturn').text('Password has been reset. please check your email');
+			setTimeout(function() {
+				windown.location.href = 'http://localhost:8080/FatStore/index';
+			}, 5 * 1000);
+		}).fail(function(error){
+			$('#messageReturn').text('Your information not correct, please check again');
+		});
+	});
+     </script>
 </body>
 </html>
