@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import constant.Session;
 import entity.Account;
 import service.AccountService;
@@ -17,6 +16,10 @@ import service.impl.AccountServiceImpl;
 @WebServlet(urlPatterns = { "/login", "/logout", "/register", "/forgotPass" })
 public class AccountController extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private AccountService accountService = new AccountServiceImpl();
 	
 	@Override
@@ -27,6 +30,9 @@ public class AccountController extends HttpServlet{
 		case "/login":
 			doGetLogin(req, resp);
 			break;
+		case "/logout":
+	    	doGetLogout(session,req,resp);
+	    	break;
 //		case "/register":
 //			doGetRegister(req, resp);
 //			break;
@@ -44,7 +50,17 @@ public class AccountController extends HttpServlet{
 		case "/register":
 			doPostRegister(session, req, resp);
 			break;
+		
 		}
+	}
+	
+	private void doGetLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/views/user/Login.jsp").forward(req, resp);	
+	}
+	
+	private void doGetLogout(HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		session.removeAttribute(Session.CURRENT_USER);
+		resp.sendRedirect("index");	
 	}
 
 	private void doPostRegister(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,9 +79,7 @@ public class AccountController extends HttpServlet{
 		}
 	}
 
-	private void doGetLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/views/user/Login.jsp").forward(req, resp);	
-	}
+	
 	
 	
 	private void doPostLogin(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
