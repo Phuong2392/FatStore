@@ -9,7 +9,7 @@ public interface ProductService {
 
 	Products findByCategoris(Integer cateid);
 
-	List<Products> findAll();
+	List<Products> findAllEntities();
 
 	List<Products> findAll(int pageNumber, int pageSize);
 	

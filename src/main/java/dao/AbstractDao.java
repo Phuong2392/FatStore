@@ -50,9 +50,6 @@ public class AbstractDao<T> {
 		String entityName = clazz.getSimpleName();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT o FROM ").append(entityName).append(" o");
-		if (existIsActive == true) {
-			sql.append(" WHERE isActive = 1");
-		}
 		TypedQuery<T> query = entityManager.createQuery(sql.toString(), clazz);
 		query.setFirstResult((pageNumber - 1) * pageSize);
 		query.setMaxResults(pageSize);

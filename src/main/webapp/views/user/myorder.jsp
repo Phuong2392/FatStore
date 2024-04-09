@@ -21,31 +21,22 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
-				<th scope="col">First</th>
-				<th scope="col">Last</th>
-				<th scope="col">Handle</th>
+				<th scope="col">Id</th>
+				<th scope="col">Price</th>
+				<th scope="col">Status</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>@mdo</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td>@twitter</td>
-			</tr>
+			<c:forEach items="${orders}" var="orders">
+				<tr>
+					<td>${orders.id}</td>
+					<td>${orders.price}</td>
+					<td><c:choose>
+							<c:when test="${orders.status == true}">Đã thanh toán</c:when>
+							<c:otherwise>Chưa thanh toán</c:otherwise>
+						</c:choose></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>

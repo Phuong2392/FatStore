@@ -22,8 +22,8 @@ public class ProductDaoImpl extends AbstractDao<Products> implements ProductDao 
 	}
 
 	@Override
-	public List<Products> findAll() {
-		return super.findAll(Products.class, true);
+	public List<Products> findAllEntities() {
+		return super.allList(Products.class);
 	}
 
 	@Override

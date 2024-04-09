@@ -23,9 +23,6 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "createdate")
-	private Timestamp createdate;
-	
 	@Column(name = "price")
 	private float price;
 	
@@ -45,14 +42,6 @@ public class Order {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Timestamp getCreatedate() {
-		return createdate;
-	}
-
-	public void setCreatedate(Timestamp createdate) {
-		this.createdate = createdate;
 	}
 
 	public float getPrice() {

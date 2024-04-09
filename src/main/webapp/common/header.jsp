@@ -66,13 +66,8 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
-										<li><a href="index.html">Home</a></li>
-										<li><a href="Catagori.html">Catagori</a></li>
-										<li class="hot"><a href="#">Latest</a>
-											<ul class="submenu">
-												<li><a href="product_list.html"> Product list</a></li>
-												<li><a href="single-product.html"> Product Details</a></li>
-											</ul></li>
+										<li><a href="index">Home</a></li>
+										<li class="hot"><a href="products">Product</a></li>
 										<li><a href="contact.html">Contact</a></li>
 									</ul>
 								</nav>
